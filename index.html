@@ -103,7 +103,10 @@
 
 function support() {
   let quantity = Number(document.getElementById("quantity").value);
-  if (quantity < 1 || isNaN(quantity)) quantity = 1;
+
+  if (quantity < 1 || isNaN(quantity)) {
+    quantity = 1;
+  }
 
   let total = quantity * pricePerCondom;
 
