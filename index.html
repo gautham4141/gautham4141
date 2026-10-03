@@ -88,6 +88,7 @@
 
   <script>
     const pricePerCondom = 50;
+    const upiId = "6301038918@ibl";
 
     function calculateTotal() {
       let quantity = Number(document.getElementById("quantity").value);
@@ -102,12 +103,20 @@
 
     function support() {
       let quantity = Number(document.getElementById("quantity").value);
+
+      if (quantity < 1 || isNaN(quantity)) {
+        quantity = 1;
+      }
+
       let total = quantity * pricePerCondom;
 
-      alert(
-        "You selected " + quantity +
-        " condom(s). Total: ₹" + total
-      );
+      const upiLink =
+        "upi://pay?pa=" + encodeURIComponent(upiId) +
+        "&pn=" + encodeURIComponent("Creator") +
+        "&am=" + total +
+        "&cu=INR";
+
+      window.location.href = upiLink;
     }
   </script>
 
