@@ -101,23 +101,21 @@
         "Total: ₹" + (quantity * pricePerCondom);
     }
 
-    function support() {
-      let quantity = Number(document.getElementById("quantity").value);
+function support() {
+  let quantity = Number(document.getElementById("quantity").value);
+  if (quantity < 1 || isNaN(quantity)) quantity = 1;
 
-      if (quantity < 1 || isNaN(quantity)) {
-        quantity = 1;
-      }
+  let total = quantity * pricePerCondom;
 
-      let total = quantity * pricePerCondom;
+  const upiLink =
+    "upi://pay?pa=" + encodeURIComponent(upiId) +
+    "&pn=Creator" +
+    "&am=" + total +
+    "&cu=INR" +
+    "&tn=Fan%20Support";
 
-      const upiLink =
-        "upi://pay?pa=" + encodeURIComponent(upiId) +
-        "&pn=" + encodeURIComponent("Creator") +
-        "&am=" + total +
-        "&cu=INR";
-
-      window.location.href = upiLink;
-    }
+  window.location.href = upiLink;
+}
   </script>
 
 </body>
